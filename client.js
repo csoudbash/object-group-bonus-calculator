@@ -38,5 +38,46 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
+//let updatedEmployees = {}
+console.log(employees);
+function newEmployees(employees) { //beginning of function
+ let updatedEmployeeList = [];
+  // beginning of for loop
+  for (let employee of employees) {
+    //begginning of new object
+    updatedEmployee = {
+      name: '',
+      bonusPercentage: 0,
+      totalCompensation: 0,
+      totalBonus: 0,
+    } // end of new object
 
-console.log( employees );
+    // beginning of early raise if else statement
+    if (employee.reviewRating <= 2 ) {
+      updatedEmployee.totalCompensation = employee.annualSalary * 1.00;
+      updatedEmployee.bonusPercentage += 0
+    } else if (employee.reviewRating === 3){
+      updatedEmployee.totalCompensation = employee.annualSalary * 1.04; 
+      updatedEmployee.bonusPercentage += 4
+    } else if (employee.reviewRating === 4) {
+      updatedEmployee.totalCompensation = employee.annualSalary * 1.06;
+      updatedEmployee.bonusPercentage += 6
+    } else {
+      updatedEmployee.totalCompensation = employee.annualSalary * 1.10;
+      updatedEmployee.bonusPercentage += 10
+    } // end of yearly raise if else statement
+      // beginning of 15 year compensation if statement
+    if (employee.employeeNumber < 9999) {
+      updatedEmployee.totalCompensation += updatedEmployee.annualSalary * 1.05;
+      updatedEmployee.bonusPercentage += 5
+    } //end of second 15 year compensation if statement
+//updatedEmployeeList.push(employee.annualSalary)
+    updatedEmployee.totalBonus = updatedEmployee.totalCompensation - employee.annualSalary; 
+    updatedEmployee.name = employee.name;
+    console.log(updatedEmployee);
+    } // end of for loop
+    return updatedEmployeeList;
+  } //end of function
+  
+console.log(newEmployees(employees));
+console.log(employees);
